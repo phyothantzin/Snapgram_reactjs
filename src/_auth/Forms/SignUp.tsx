@@ -19,6 +19,7 @@ import {
   useSignInAccount,
 } from "@/lib/react-query/queriesAndMutations";
 import { useUserContext } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
@@ -54,7 +55,7 @@ const SignUp = () => {
     });
 
     if (!session) {
-      console.log("Sign in failed");
+      toast.error("Sign in failed");
     }
 
     const isLoggedIn = await checkAuthUser();
@@ -63,7 +64,7 @@ const SignUp = () => {
       form.reset();
       navigate("/");
     } else {
-      console.log("Sign up failed");
+      toast.error("Sign in failed");
     }
   }
   return (
@@ -133,7 +134,11 @@ const SignUp = () => {
               </FormItem>
             )}
           />
-          <Button className="shad-button_primary" type="submit">
+          <Button
+            className="shad-button_primary"
+            type="submit"
+            disabled={isCreatingUser || isSigningIn || isUserLoading}
+          >
             {isCreatingUser ? (
               <div className="flex-center gap-2">
                 <Loader />

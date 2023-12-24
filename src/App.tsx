@@ -5,6 +5,8 @@ import RootLayout from "./_root/RootLayout";
 import SignIn from "./_auth/Forms/SignIn";
 import SignUp from "./_auth/Forms/SignUp";
 import { Home } from "./_root/pages";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>
+
+      <ToastContainer />
     </main>
   );
 };
